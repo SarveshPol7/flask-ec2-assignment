@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 560px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .info-row {
+            margin: 12px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .buttons {
+            margin-top: 24px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        a.button {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            background: #e9ecef;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>User Profile</h2>
+
+    <div class="info-row">
+        <span class="label">Username:</span>
+        {{ user["username"] }}
+    </div>
+
+    <div class="info-row">
+        <span class="label">First Name:</span>
+        {{ user["firstname"] }}
+    </div>
+
+    <div class="info-row">
+        <span class="label">Last Name:</span>
+        {{ user["lastname"] }}
+    </div>
+
+    <div class="info-row">
+        <span class="label">Email:</span>
+        {{ user["email"] }}
+    </div>
+
+    <div class="info-row">
+        <span class="label">Address:</span>
+        {{ user["address"] }}
+    </div>
+
+    {% if user["filename"] %}
+    <div class="info-row">
+        <span class="label">Uploaded File:</span>
+        {{ user["filename"] }}
+    </div>
+
+    <div class="info-row">
+        <span class="label">Word Count:</span>
+        {{ user["word_count"] }}
+    </div>
+
+    <div class="buttons">
+        <a class="button" href="/download/{{ user['filename'] }}">
+            Download File
+        </a>
+
+        <a class="button" href="/login">
+            Re-Login
+        </a>
+
+        <a class="button" href="/">
+            Register Another User
+        </a>
+    </div>
+
+    {% else %}
+
+    <div class="info-row">
+        No file was uploaded.
+    </div>
+
+    <div class="buttons">
+        <a class="button" href="/login">
+            Re-Login
+        </a>
+
+        <a class="button" href="/">
+            Register Another User
+        </a>
+    </div>
+
+    {% endif %}
+</div>
+
+</body>
+</html>
